@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>Crashan&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Given a string, find the length of the longest substring without repeating characters. Example 1:123Input: &amp;quot;abcabcbb&amp;quot;Output: 3 Explanation: The answer is &amp;quot;abc&amp;quot;, with the length of">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Crashan&#39;s Blog">
+<meta property="og:url" content="http://yoursite.com/leet_code/problemset/3.longest_substring_without_repeating_character.html">
+<meta property="og:site_name" content="Crashan&#39;s Blog">
+<meta property="og:description" content="Given a string, find the length of the longest substring without repeating characters. Example 1:123Input: &amp;quot;abcabcbb&amp;quot;Output: 3 Explanation: The answer is &amp;quot;abc&amp;quot;, with the length of">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-03-23T16:31:33.497Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Crashan&#39;s Blog">
+<meta name="twitter:description" content="Given a string, find the length of the longest substring without repeating characters. Example 1:123Input: &amp;quot;abcabcbb&amp;quot;Output: 3 Explanation: The answer is &amp;quot;abc&amp;quot;, with the length of">
+  
+    <link rel="alternate" href="/atom.xml" title="Crashan&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Crashan&#39;s Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="page-" class="article article-type-page" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/leet_code/problemset/3.longest_substring_without_repeating_character.html" class="article-date">
+  <time datetime="2019-03-23T16:31:33.497Z" itemprop="datePublished">2019-03-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Given a string, find the length of the <strong>longest substring</strong> without repeating characters.</p>
+<p><strong>Example 1:</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: &quot;abcabcbb&quot;</span><br><span class="line">Output: 3 </span><br><span class="line">Explanation: The answer is &quot;abc&quot;, with the length of 3.</span><br></pre></td></tr></table></figure></p>
+<p><strong>Example 2:</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: &quot;bbbbb&quot;</span><br><span class="line">Output: 1</span><br><span class="line">Explanation: The answer is &quot;b&quot;, with the length of 1.</span><br></pre></td></tr></table></figure></p>
+<p><strong>Example 3:</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Input: &quot;pwwkew&quot;</span><br><span class="line">Output: 3</span><br><span class="line">Explanation: The answer is &quot;wke&quot;, with the length of 3. </span><br><span class="line">             Note that the answer must be a substring, &quot;pwke&quot; is a </span><br><span class="line">             subsequence and not a substring.</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>题目大意<br>给一个string，求最大不重复字串长度</li>
+</ul>
+<h4 id="暴力解法"><a href="#暴力解法" class="headerlink" title="暴力解法"></a>暴力解法</h4><p>第一个思路是暴力解法，遍历所有的字串，判断是否没有重复字符串，然后维护<code>max_len</code>。时间复杂度<code>O(n^3)</code>，空间复杂度<code>O(k)</code><br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unordered_set&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">UniqueString</span><span class="params">(<span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">string</span> &amp;s, <span class="keyword">size_t</span> beg, <span class="keyword">size_t</span> end)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">unordered_set</span>&lt;<span class="keyword">char</span>&gt; cset;</span><br><span class="line">        <span class="keyword">for</span>(; beg != end; ++beg) &#123;</span><br><span class="line">            <span class="keyword">if</span> (cset.find(s[beg]) != cset.end()) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            cset.insert(s[beg]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">lengthOfLongestSubstring</span><span class="params">(<span class="built_in">string</span> s)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> max_len = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">size_t</span> i = <span class="number">0</span>; i &lt; s.size(); ++i) &#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">size_t</span> j = i + <span class="number">1</span>; j &lt;= s.size(); ++j) &#123;</span><br><span class="line">                <span class="keyword">if</span> (UniqueString(s, i, j)) max_len = <span class="built_in">std</span>::max(max_len, j - i);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> max_len;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<h4 id="优化解法"><a href="#优化解法" class="headerlink" title="优化解法"></a>优化解法</h4><p>第二个思路是，维护一个区间<code>[i, j]</code>, 遍历字符串，判断当前字符是否在区间内，是的话<code>i+1</code>，否则<code>j+1</code>，从0开始遍历，保证每次都可以复用上一次的区间<code>set</code>。最优情况下每次执行都是<code>j+1</code>，只需要执行<code>n</code>次，最坏情况下比如<code>aaaaa</code>，每次遍历都是先<code>j+1</code>然后又<code>i+1</code>，需要执行<code>2n</code>次，总的时间复杂度为<code>O(n)</code>，空间复杂度<code>O(n)</code><br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">lengthOfLongestSubstring</span><span class="params">(<span class="built_in">string</span> s)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">0</span>, j = <span class="number">0</span>, len = s.size(), max_len = <span class="number">0</span>;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">unordered_set</span>&lt;<span class="keyword">char</span>&gt; cset;</span><br><span class="line">    <span class="keyword">while</span> (i &lt; len &amp;&amp; j &lt; len) &#123;</span><br><span class="line">        <span class="keyword">if</span> (cset.find(s[j]) == cset.end()) &#123;</span><br><span class="line">            cset.insert(s[j++]);</span><br><span class="line">            max_len = <span class="built_in">std</span>::max(max_len, j - i);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            cset.erase(s[i++]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> max_len;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="优化解法2"><a href="#优化解法2" class="headerlink" title="优化解法2"></a>优化解法2</h4><p>在上面的解法中，每次发现有重复字符，都会从前面开始一个一个删除，实际上一次性把所有重复的删除了即可，如果采用<code>map&lt;char, int&gt;</code>，那在删除的前面全部重复字符的时候相当于间接遍历了<code>map</code>，和一个一个删除的方案没有不同。<br>实际上，可以在<code>map</code>存第一个不同字符的下标，这样每次直接通过索引就可以快速跳区间。<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">lengthOfLongestSubstring</span><span class="params">(<span class="built_in">string</span> s)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> max_len = <span class="number">0</span>, i = <span class="number">0</span>;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">unordered_map</span>&lt;<span class="keyword">char</span>, <span class="keyword">int</span>&gt; cmap;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; s.size(); ++j) &#123;</span><br><span class="line">        i = <span class="built_in">std</span>::max(i, cmap[s[j]]);</span><br><span class="line">        cmap[s[j]] = j + <span class="number">1</span>;</span><br><span class="line">        max_len = <span class="built_in">std</span>::max(max_len, j - i + <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> max_len;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/leet_code/problemset/3.longest_substring_without_repeating_character.html" data-id="cjtlpnup50006x8uxgrsltdeb" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/03/24/2.add_tow_numbers/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/03/24/3.longest_substring_without_repeating_character/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/03/24/1.tow_sum/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/03/23/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 crashan<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

@@ -7,13 +7,17 @@
   
   <title>Crashan&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
+  <meta name="description" content="Given a string, find the length of the longest substring without repeating characters. Example 1:123Input: &amp;quot;abcabcbb&amp;quot;Output: 3 Explanation: The answer is &amp;quot;abc&amp;quot;, with the length of">
+<meta property="og:type" content="article">
 <meta property="og:title" content="Crashan&#39;s Blog">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta property="og:url" content="http://yoursite.com/2019/03/24/3.longest_substring_without_repeating_character/index.html">
 <meta property="og:site_name" content="Crashan&#39;s Blog">
+<meta property="og:description" content="Given a string, find the length of the longest substring without repeating characters. Example 1:123Input: &amp;quot;abcabcbb&amp;quot;Output: 3 Explanation: The answer is &amp;quot;abc&amp;quot;, with the length of">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-03-23T16:31:33.575Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Crashan&#39;s Blog">
+<meta name="twitter:description" content="Given a string, find the length of the longest substring without repeating characters. Example 1:123Input: &amp;quot;abcabcbb&amp;quot;Output: 3 Explanation: The answer is &amp;quot;abc&amp;quot;, with the length of">
   
     <link rel="alternate" href="/atom.xml" title="Crashan&#39;s Blog" type="application/atom+xml">
   
@@ -60,43 +64,7 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-2.add_tow_numbers" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/03/24/2.add_tow_numbers/" class="article-date">
-  <time datetime="2019-03-23T16:31:33.575Z" itemprop="datePublished">2019-03-24</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>You are given two <strong>non-empty</strong> linked lists representing two non-negative integers. The digits are stored in <strong>reverse order</strong> and each of their nodes contain a single digit. Add the two numbers and return it as a linked list.</p>
-<p>You may assume the two numbers do not contain any leading zero, except the number 0 itself.</p>
-<p><strong>Example:</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: (2 -&gt; 4 -&gt; 3) + (5 -&gt; 6 -&gt; 4)</span><br><span class="line">Output: 7 -&gt; 0 -&gt; 8</span><br><span class="line">Explanation: 342 + 465 = 807.</span><br></pre></td></tr></table></figure></p>
-<ul>
-<li>题目大意<br>给两个链表，分别表示两个数字的每一位逆序，求这两个数的和</li>
-<li>思路<br>直接遍历链表，注意进位即可。时间复杂度<code>O(m + n)</code>, 空间复杂度<code>O(1)</code></li>
-<li>AC代码<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * struct ListNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     ListNode *next;</span></span><br><span class="line"><span class="comment"> *     ListNode(int x) : val(x), next(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:    </span><br><span class="line">    <span class="function">ListNode* <span class="title">addTwoNumbers</span><span class="params">(ListNode* l1, ListNode* l2)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">bool</span> carry = <span class="literal">false</span>;</span><br><span class="line">        ListNode *root = <span class="literal">nullptr</span>, *prev = <span class="literal">nullptr</span>;</span><br><span class="line">        <span class="keyword">auto</span> append_node = [&amp;carry, &amp;root, &amp;prev](<span class="keyword">int</span> v1, <span class="keyword">int</span> v2) &#123;</span><br><span class="line">            <span class="keyword">int</span> sum = v1 + v2 + (carry ? <span class="number">1</span> : <span class="number">0</span>);</span><br><span class="line">            carry = sum &gt;= <span class="number">10</span>;</span><br><span class="line">            ListNode *node = <span class="keyword">new</span> ListNode(sum % <span class="number">10</span>);</span><br><span class="line">            <span class="keyword">if</span> (!prev) root = node;</span><br><span class="line">            <span class="keyword">else</span> prev-&gt;next = node;</span><br><span class="line">            prev = node;</span><br><span class="line">        &#125;;</span><br><span class="line">        <span class="keyword">while</span>(l1 &amp;&amp; l2) &#123;</span><br><span class="line">            append_node(l1-&gt;val, l2-&gt;val);</span><br><span class="line">            l1 = l1-&gt;next;</span><br><span class="line">            l2 = l2-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (!l1) l1 = l2;</span><br><span class="line">        <span class="keyword">while</span>(l1) &#123;</span><br><span class="line">            append_node(l1-&gt;val, <span class="number">0</span>);</span><br><span class="line">            l1 = l1-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (carry) &#123;</span><br><span class="line">            <span class="keyword">if</span> (!prev) root = <span class="keyword">new</span> ListNode(<span class="number">1</span>);</span><br><span class="line">            <span class="keyword">else</span> prev-&gt;next = <span class="keyword">new</span> ListNode(<span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> root;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/03/24/2.add_tow_numbers/" data-id="cjtlpnuna0001x8ux3xv1kccw" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-3.longest_substring_without_repeating_character" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-3.longest_substring_without_repeating_character" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/03/24/3.longest_substring_without_repeating_character/" class="article-date">
   <time datetime="2019-03-23T16:31:33.575Z" itemprop="datePublished">2019-03-24</time>
@@ -128,92 +96,28 @@
     </footer>
   </div>
   
-</article>
-
-
+    
+<nav id="article-nav">
   
-    <article id="post-1.tow_sum" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/03/24/1.tow_sum/" class="article-date">
-  <time datetime="2019-03-23T16:31:33.559Z" itemprop="datePublished">2019-03-24</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Given an array of integers, return indices of the two numbers such that they add up to a specific target.</p>
-<p>You may assume that each input would have exactly one solution, and you may not use the same element twice.</p>
-<p><strong>Example:</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Given nums = [2, 7, 11, 15], target = 9,</span><br><span class="line"></span><br><span class="line">Because nums[0] + nums[1] = 2 + 7 = 9,</span><br><span class="line">return [0, 1].</span><br></pre></td></tr></table></figure></p>
-<p>题目大意：给一个数组和一个目标值，数组中有两个数和为目标值，输出两个数的坐标。</p>
-<ul>
-<li>思路<br>遍历一遍数组，每次都将当前值及其下标插入哈希表，插入前查找map是否存在<code>target-num[i]</code>，是则说明找到。</li>
-<li>复杂度<br>最坏情况下遍历到最后一个数才找到答案，每次遍历都要查找一次、插入一次，时间复杂度为<code>O(n)</code>，空间复杂度<code>O(n)</code></li>
-<li>AC代码<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unordered_map&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; twoSum(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> target) &#123;</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">unordered_map</span>&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; dict;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; (<span class="keyword">int</span>)nums.size(); ++i) &#123;</span><br><span class="line">            <span class="keyword">auto</span> iter = dict.find(target - nums[i]);</span><br><span class="line">            <span class="keyword">if</span> (iter != dict.end()) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&#123;i, iter-&gt;second&#125;;</span><br><span class="line">            &#125;</span><br><span class="line">            dict.insert(<span class="built_in">std</span>::make_pair(nums[i], i));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&#123;<span class="number">0</span>, <span class="number">0</span>&#125;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/03/24/1.tow_sum/" data-id="cjtlpnumz0000x8ux5zy70kxb" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/03/23/hello-world/" class="article-date">
-  <time datetime="2019-03-23T15:54:53.308Z" itemprop="datePublished">2019-03-23</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
+    <a href="/2019/03/24/2.add_tow_numbers/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
         
+          (no title)
+        
+      </div>
+    </a>
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/03/23/hello-world/">Hello World</a>
-    </h1>
   
+    <a href="/2019/03/24/1.tow_sum/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/03/23/hello-world/" data-id="cjtlpnunf0003x8ux4pbdv93e" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
   
 </article>
-
-
-  
-
 
 </section>
         
